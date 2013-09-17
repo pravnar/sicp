@@ -164,3 +164,21 @@
       (cbrt-iter (improve-cbrt guess x) x)))
 
 (define (cbrt x) (cbrt-iter 1.0 x))
+
+
+;; We can use a block-structure to redefine sqrt and hide all the sub-procedures
+;; This will also allow us to remove x from the parameter list of the sub-procedures
+;; and instead let it be lexically-scoped.
+
+;; (define (sqrt x)
+;;   (define (good-enough? guess)
+;;     (< (abs (- (square guess) x)) 0.001))
+;;   (define (improve guess)
+;;     (average guess (/ x guess)))
+;;   (define (sqrt-iter guess)
+;;     (if (good-enough? guess)
+;;         guess
+;;         (sqrt-iter (improve guess))))
+;;   (sqrt-iter 1.0))
+
+

@@ -118,8 +118,8 @@
 
 (define (sqrt-iter guess x)
   (if (good-enough? guess x)
-          guess
-          (sqrt-iter (improve-guess guess x) x)))
+      guess
+      (sqrt-iter (improve-guess guess x) x)))
 
 (define (improve-guess guess x)
   (average guess (/ x guess)))
@@ -142,3 +142,25 @@
 ;; This is because new-if is a procedure, which means thats it will be evaluated using
 ;; applicative-order, and all three arguments to new-if will be evaluated before they are applied.
 ;; Since there is a recursive call in one of the arguments, we enter an infinite loop.
+
+
+;; Exercise 1.8
+
+(define (cube x) (* x x x))
+
+(define (improve-cbrt guess x)
+  (/
+   (+
+    (/ x (square guess))
+    (* 2 guess))
+   3))
+
+(define (good-enough-cbrt? guess x)
+  (< (abs (- (cube guess) x)) 0.001))
+
+(define (cbrt-iter guess x)
+  (if (good-enough-cbrt? guess x)
+      guess
+      (cbrt-iter (improve-cbrt guess x) x)))
+
+(define (cbrt x) (cbrt-iter 1.0 x))

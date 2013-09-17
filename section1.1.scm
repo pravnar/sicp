@@ -180,5 +180,3 @@
 ;;         guess
 ;;         (sqrt-iter (improve guess))))
 ;;   (sqrt-iter 1.0))
-
-

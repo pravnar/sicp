@@ -118,8 +118,8 @@
 
 (define (sqrt-iter guess x)
   (if (good-enough? guess x)
-      guess
-      (sqrt-iter (improve-guess guess x) x)))
+          guess
+          (sqrt-iter (improve-guess guess x) x)))
 
 (define (improve-guess guess x)
   (average guess (/ x guess)))
@@ -131,3 +131,14 @@
 
 (define (sqrt x) (sqrt-iter 1.0 x))
 
+
+;; Exercise 1.6
+
+(define (new-if predicate then-clause else-clause)
+  (cond (predicate then-clause)
+        (else else-clause)))
+
+;; Using new-if in place of if in sqrt-iter will cause an infinite loop.
+;; This is because new-if is a procedure, which means thats it will be evaluated using
+;; applicative-order, and all three arguments to new-if will be evaluated before they are applied.
+;; Since there is a recursive call in one of the arguments, we enter an infinite loop.

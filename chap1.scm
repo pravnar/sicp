@@ -1,3 +1,4 @@
+
 ;; Main idea is to build up compund procedures from simple blocks
 
 ;; The local name "x" plays the same role that a pronoun plays in natural language
@@ -14,6 +15,9 @@
   (cond
     ((= a 1) 1)
     ((= a 2) 5)))
+
+(define (abs x)
+  (if (< x 0) (- x) x))
 
 
 ;; Exercise 1.1
@@ -102,4 +106,28 @@
 ;; Infinite loop. The arguments get evaluated first, so (p) will cause unending loop.
 
 ;; What behavior will he observe with an interpreter that uses normal-order evaluation?
-;; 0 will be printed. The arguments are not expanded, instead the procedure is expanded. This produces the if statement, which will first evaluate the condition/predicate. This is true, so the consequent is evaluated and returned.
+;; 0 will be printed. The arguments are not expanded, instead the procedure is expanded.
+;; This produces the if statement, which will first evaluate the condition/predicate.
+;; This is true, so the consequent is evaluated and returned.
+
+
+
+
+;; Newton's square root method
+;; Notice how procedures are broken up into smaller and simpler blocks wherever possible
+
+(define (sqrt-iter guess x)
+  (if (good-enough? guess x)
+      guess
+      (sqrt-iter (improve-guess guess x) x)))
+
+(define (improve-guess guess x)
+  (average guess (/ x guess)))
+
+(define (average x y) (/ (+ x y) 2))
+
+(define (good-enough? guess x)
+  (< (abs (- (square guess) x)) 0.001))
+
+(define (sqrt x) (sqrt-iter 1.0 x))
+

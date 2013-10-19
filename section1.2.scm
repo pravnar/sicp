@@ -1,14 +1,14 @@
 ;; Exercise 1.9
 
-(define (+recec a b)
+(define (+rec a b)
   (if (= a 0)
       b
-      (inc (+recec (dec a) b))))
+      (inc (+rec (dec a) b))))
 
-(define (+iterter a b)
+(define (+iter a b)
   (if (= a 0)
       b
-      (+iterter (dec a) (inc b))))
+      (+iter (dec a) (inc b))))
 
 ;; Evaluation using the substitution model
 

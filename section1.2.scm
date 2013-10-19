@@ -1,41 +1,41 @@
 ;; Exercise 1.9
 
-(define (+rec a b)
+(define (+recec a b)
   (if (= a 0)
       b
-      (inc (+rec (dec a) b))))
+      (inc (+recec (dec a) b))))
 
-(define (+iter a b)
+(define (+iterter a b)
   (if (= a 0)
       b
-      (+iter (dec a) (inc b))))
+      (+iterter (dec a) (inc b))))
 
 ;; Evaluation using the substitution model
 
-;; (+r 4 5)
-;; => (inc (+r (dec 4) 5))
-;; => (inc (+r 3 5))
-;; => (inc (inc (+r (dec 3) 5)))
-;; => (inc (inc (+r 2 5)))
-;; => (inc (inc (inc (+r (dec 2) 5))))
-;; => (inc (inc (inc (+r 1 5))))
-;; => (inc (inc (inc (inc (+r (dec 1) 5)))))
-;; => (inc (inc (inc (inc (+r 0 5)))))
+;; (+rec 4 5)
+;; => (inc (+rec (dec 4) 5))
+;; => (inc (+rec 3 5))
+;; => (inc (inc (+rec (dec 3) 5)))
+;; => (inc (inc (+rec 2 5)))
+;; => (inc (inc (inc (+rec (dec 2) 5))))
+;; => (inc (inc (inc (+rec 1 5))))
+;; => (inc (inc (inc (inc (+rec (dec 1) 5)))))
+;; => (inc (inc (inc (inc (+rec 0 5)))))
 ;; => (inc (inc (inc (inc 5))))
 ;; => (inc (inc (inc 6)))
 ;; => (inc (inc 7))
 ;; => (inc 8)
 ;; => 9
 
-;; (+i 4 5)
-;; => (+i (dec 4) (inc 5))
-;; => (+i 3 6)
-;; => (+i (dec 3) (inc 6))
-;; => (+i 2 7)
-;; => (+i (dec 2) (inc 7))
-;; => (+i 1 8)
-;; => (+i (dec 1) (inc 8))
-;; => (+i 0 9)
+;; (+iter 4 5)
+;; => (+iter (dec 4) (inc 5))
+;; => (+iter 3 6)
+;; => (+iter (dec 3) (inc 6))
+;; => (+iter 2 7)
+;; => (+iter (dec 2) (inc 7))
+;; => (+iter 1 8)
+;; => (+iter (dec 1) (inc 8))
+;; => (+iter 0 9)
 ;; 9
 
 

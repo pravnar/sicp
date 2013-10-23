@@ -85,3 +85,25 @@
 ;; => (A 1 2)
 ;; => 2^2
 
+
+;; Exercise 1.11
+;; f(n) = | n                                  if n<3
+;;        | f(n - 1) + 2f(n - 2) + 3f(n - 3)   otherwise
+
+;; Recursive
+(define (frec n)
+  (if (< n 3)
+      n
+      (+ (frec (- n 1))
+         (* 2 (frec (- n 2)))
+         (* 3 (frec (- n 3))))))
+
+;; Iterative
+(define (fiter n)
+  (fiter-helper 2 1 0 n))
+
+(define (fiter-helper a b c count)
+  (cond ((< count 0) count)
+        ((= count 0) c)
+        ((= count 1) b)
+        (else (fiter-helper (+ a (* 2 b) (* 3 c)) a b (- count 1)))))

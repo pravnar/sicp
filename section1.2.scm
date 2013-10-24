@@ -107,3 +107,23 @@
         ((= count 0) c)
         ((= count 1) b)
         (else (fiter-helper (+ a (* 2 b) (* 3 c)) a b (- count 1)))))
+
+
+;; Exercise 1.12
+(define (pascal r c)
+  (cond ((or (<= r 0) (<= c 0))
+         (errorf 'pascal "Pascal's triangle's indices start at 1"))
+        ((or (= c 1) (= c r)) 1)
+        (else (+ (pascal (- r 1) (- c 1)) (pascal (- r 1) c)))))
+
+(define (print-pascal n)
+  (when (> n 0)
+    (print-pascalrow n 1)
+    (printf "~%")
+    (print-pascal (- n 1))))
+
+(define (print-pascalrow r c)
+  (when (<= c r)
+    (printf "~a " (pascal r c))
+    (print-pascalrow r (+ c 1))))
+
